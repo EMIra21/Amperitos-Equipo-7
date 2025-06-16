@@ -42,30 +42,30 @@
         <div class="space-font text-violet-400 text-3xl grow-1  font-bold mb-8">CS</div>
         
         <!-- Navigation Icons -->
-        <nav class="flex flex-col grow-3 text-purple-200 items-center justify-center  h-full">
+        <nav class="flex flex-col grow-3 text-white items-center justify-center  h-full">
             
-            <a href="{{ route('sensores.index') }}" class="group transition-all hover:text-gray-100 hover:scale-115 delay-150 ease-in transition-discrete hover:rounded-2xl relative grow flex flex-col justify-center  sidebar-icon {{ request()->routeIs('sensores.index') ? 'bg-violet-900 rounded-xl' : '' }}">
+            <a href="{{ route('sensores.index') }}" class="group transition-all hover:text-purple-500 hover:scale-115 delay-150 ease-in transition-discrete hover:rounded-2xl relative grow flex flex-col justify-center  sidebar-icon {{ request()->routeIs('sensores.index') ? 'text-purple-400' : '' }}">
                 <div class = "h-auto ">
                 <i class="fas fa-satellite-dish text-xl"></i>
                 <span class="sidebar-tooltip ">Datos en Tiempo Real</span>
                 </div>
             </a>
             
-            <a href="{{ route('sensores.estadisticas') }}" class="group transition-all hover:text-gray-100 hover:scale-115 delay-150 ease-in transition-discrete hover:rounded-2xl  relative  grow flex flex-col justify-center sidebar-icon {{ request()->routeIs('sensores.estadisticas') ? 'bg-violet-900' : '' }}">
+            <a href="{{ route('sensores.estadisticas') }}" class="group transition-all hover:text-purple-500 hover:scale-115 delay-150 ease-in transition-discrete hover:rounded-2xl  relative  grow flex flex-col justify-center sidebar-icon {{ request()->routeIs('sensores.estadisticas') ? 'text-purple-400' : '' }}">
                  <div class = "h-auto ">
                 <i class="fas fa-chart-bar text-xl"></i>
                 <span class="sidebar-tooltip">Estadísticas</span>
                 </div>
             </a>
             
-            <a href="#" class="group transition-all hover:text-gray-100 hover:scale-115 delay-150 ease-in  transition-discrete hover:rounded-2xl relative grow flex flex-col justify-center  sidebar-icon">
+            <a href="#" class="group transition-all hover:text-purple-500 hover:scale-115 delay-150 ease-in  transition-discrete hover:rounded-2xl relative grow flex flex-col justify-center  sidebar-icon">
                  <div class = "h-auto ">
                 <i class="fas fa-cog text-xl"></i>
                 <span class="sidebar-tooltip">Configuración</span>
                 </div>
             </a>
             
-            <a href="#" class="group relative transition-all hover:text-gray-100 hover:scale-115 delay-150 ease-in  transition-discrete hover:rounded-2xl grow flex flex-col justify-center sidebar-icon">
+            <a href="#" class="group relative transition-all hover:text-purple-500 hover:scale-115 delay-150 ease-in  transition-discrete hover:rounded-2xl grow flex flex-col justify-center sidebar-icon">
                  <div class = "h-auto ">
                 <i class="fas fa-rocket text-xl"></i>
                 <span class="sidebar-tooltip">Control de Misión</span>
@@ -74,8 +74,8 @@
         </nav>
         
         <!-- Status Indicator -->
-        <div class="mt-auto group grow-1 py-4 relative sidebar-icon ">
-            <i class="fas fa-signal text-purple-400"></i>
+        <div class="mt-auto group grow-1 py-4 scale-80 hover:animate-pulse hover:cursor-default relative sidebar-icon ">
+            <i class="fas fa-signal  text-purple-400"></i>
             <span class="sidebar-tooltip text-purple-400  font-semibold">Sistema Conectado</span>
         </div>
     </aside>
@@ -95,7 +95,7 @@
                         <span id="currentTime">{{ now()->format('H:i:s') }}</span>
                     </div>
                     <div class="flex items-center space-x-2  text-purple-400">
-                        <i class="transition-all delay-100 animate-pulse scale-135 fas fa-circle text-xs"></i>
+                        <i class="transition-all  animate-ping duration-1000  scale-80  fas fa-circle text-xs"></i>
                         <span class="text-sm space-font">En línea</span>
                     </div>
                 </div>
