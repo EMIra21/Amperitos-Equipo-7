@@ -17,75 +17,85 @@
         </style>
     @endif
 </head>
-<body class="h-full bg-gray-900 flex">
+<body class="h-full bg-purple-950 flex">
     <style>
         .nasa-gradient {
-            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            background: linear-gradient(135deg, #240046 0%, #3C096C 100%);
         }
         .glow-effect {
-            box-shadow: 0 0 15px rgba(66, 153, 225, 0.5);
+            box-shadow: 0 0 15px rgba(157, 78, 221, 0.5);
+
         }   
         .space-font {
             font-family: 'Orbitron', sans-serif;
         }
         .sidebar-icon {
-            @apply w-12 h-12 flex items-center justify-center rounded-lg mb-4 text-blue-300 hover:text-blue-100 hover:bg-blue-800 transition-all duration-300 border border-blue-700 hover:border-blue-500 hover:glow-effect;
+            @apply w-12 h-12 flex items-center justify-center rounded-lg mb-4 text-purple-300 hover:text-blue-100 hover:bg-violet-800 transition-all duration-300 border border-violet-700 hover:border-violet-500 hover:glow-effect;
         }
         .sidebar-tooltip {
-            @apply absolute left-full ml-4 px-2 py-1 bg-gray-900 text-blue-300 text-xs font-semibold rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap border border-blue-700;
+            @apply absolute left-full ml-4 px-2 py-1 bg-gray-900 text-purple-300 text-xs font-semibold rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap border border-violet-700;
         }
     </style>
     
     <!-- Sidebar -->
-    <aside class="nasa-gradient  min-h-screen p-4 flex flex-col items-center border-r border-blue-700 glow-effect relative">
-        <div class="space-font text-blue-300 text-2xl font-bold mb-8">CS</div>
+    <aside class="nasa-gradient  min-h-screen p-4 flex flex-col items-center border-r bg-purple-950 glow-effect relative">
+        <div class="space-font text-violet-400 text-3xl grow-1  font-bold mb-8">CS</div>
         
         <!-- Navigation Icons -->
-        <nav class="flex flex-col items-center space-y-4">
-            <a href="{{ route('sensores.index') }}" class="group relative sidebar-icon {{ request()->routeIs('sensores.index') ? 'bg-blue-900' : '' }}">
+        <nav class="flex flex-col grow-3 text-purple-200 items-center justify-center  h-full">
+            
+            <a href="{{ route('sensores.index') }}" class="group transition-all hover:text-gray-100 hover:scale-115 delay-150 ease-in transition-discrete hover:rounded-2xl relative grow flex flex-col justify-center  sidebar-icon {{ request()->routeIs('sensores.index') ? 'bg-violet-900 rounded-xl' : '' }}">
+                <div class = "h-auto ">
                 <i class="fas fa-satellite-dish text-xl"></i>
-                <span class="sidebar-tooltip">Datos en Tiempo Real</span>
+                <span class="sidebar-tooltip ">Datos en Tiempo Real</span>
+                </div>
             </a>
             
-            <a href="{{ route('sensores.estadisticas') }}" class="group relative sidebar-icon {{ request()->routeIs('sensores.estadisticas') ? 'bg-blue-900' : '' }}">
+            <a href="{{ route('sensores.estadisticas') }}" class="group transition-all hover:text-gray-100 hover:scale-115 delay-150 ease-in transition-discrete hover:rounded-2xl  relative  grow flex flex-col justify-center sidebar-icon {{ request()->routeIs('sensores.estadisticas') ? 'bg-violet-900' : '' }}">
+                 <div class = "h-auto ">
                 <i class="fas fa-chart-bar text-xl"></i>
                 <span class="sidebar-tooltip">Estadísticas</span>
+                </div>
             </a>
             
-            <a href="#" class="group relative sidebar-icon">
+            <a href="#" class="group transition-all hover:text-gray-100 hover:scale-115 delay-150 ease-in  transition-discrete hover:rounded-2xl relative grow flex flex-col justify-center  sidebar-icon">
+                 <div class = "h-auto ">
                 <i class="fas fa-cog text-xl"></i>
                 <span class="sidebar-tooltip">Configuración</span>
+                </div>
             </a>
             
-            <a href="#" class="group relative sidebar-icon">
+            <a href="#" class="group relative transition-all hover:text-gray-100 hover:scale-115 delay-150 ease-in  transition-discrete hover:rounded-2xl grow flex flex-col justify-center sidebar-icon">
+                 <div class = "h-auto ">
                 <i class="fas fa-rocket text-xl"></i>
                 <span class="sidebar-tooltip">Control de Misión</span>
+                </div>
             </a>
         </nav>
         
         <!-- Status Indicator -->
-        <div class="mt-auto group relative sidebar-icon bg-green-900/50">
-            <i class="fas fa-signal text-green-400"></i>
-            <span class="sidebar-tooltip">Sistema Conectado</span>
+        <div class="mt-auto group grow-1 py-4 relative sidebar-icon ">
+            <i class="fas fa-signal text-purple-400"></i>
+            <span class="sidebar-tooltip text-purple-400  font-semibold">Sistema Conectado</span>
         </div>
     </aside>
     
     <!-- Main Content -->
     <div class="flex-1 flex flex-col">
-        <nav class="nasa-gradient h-16 flex items-center px-6 border-b border-blue-700">
+        <nav class="nasa-gradient h-16 flex items-center px-6 border-b border-violet-700">
             <div class="flex items-center justify-between w-full">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
-                        <span class="text-blue-300 font-bold text-xl space-font tracking-wider">CanSat Mission Control</span>
+                        <span class="text-violet-400 font-bold text-xl space-font tracking-wider">CanSat Mission Control</span>
                     </div>
                 </div>
                 <div class="flex items-center space-x-4">
-                    <div class="text-blue-300 space-font">
+                    <div class="text-violet-400 space-font">
                         <i class="fas fa-clock mr-2"></i>
                         <span id="currentTime">{{ now()->format('H:i:s') }}</span>
                     </div>
-                    <div class="flex items-center space-x-2 text-green-400">
-                        <i class="fas fa-circle text-xs animate-pulse"></i>
+                    <div class="flex items-center space-x-2  text-purple-400">
+                        <i class="transition-all delay-100 animate-pulse scale-135 fas fa-circle text-xs"></i>
                         <span class="text-sm space-font">En línea</span>
                     </div>
                 </div>
@@ -93,7 +103,7 @@
         </nav>
 
         <!-- Page Content -->
-        <main class="flex-1 p-6 overflow-auto bg-gray-900">
+        <main class="flex-1 p-6 overflow-auto bg-indigo-950">
             @yield('content')
         </main>
     </div>

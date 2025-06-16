@@ -12,7 +12,7 @@ class SensorDataController extends Controller
     public function index()
 {
     try {
-        $response = Http::get('http://localhost:8000/api/datos');
+        $response = Http::get('http://localhost:5000/api/datos');
         
         // Verifica si la respuesta existe y es exitosa
         if (!$response || !$response->successful()) {
