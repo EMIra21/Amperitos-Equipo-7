@@ -17,7 +17,7 @@
         </style>
     @endif
 </head>
-<body class="h-full bg-purple-950 flex">
+<body class="h-full bg-black flex">
     <style>
         .nasa-gradient {
             background: linear-gradient(135deg, #240046 0%, #3C096C 100%);
@@ -44,28 +44,28 @@
         <!-- Navigation Icons -->
         <nav class="flex flex-col grow-3 text-white items-center justify-center  h-full">
             
-            <a href="{{ route('sensores.index') }}" class="group transition-all hover:text-purple-500 hover:scale-115 delay-150 ease-in transition-discrete hover:rounded-2xl relative grow flex flex-col justify-center  sidebar-icon {{ request()->routeIs('sensores.index') ? 'text-purple-400' : '' }}">
+            <a href="{{ route('sensores.index') }}" class="group transition-all hover:text-purple-500 hover:scale-115 delay-100  ease-in transition-discrete hover:rounded-2xl relative grow flex flex-col justify-center  sidebar-icon {{ request()->routeIs('sensores.index') ? 'text-purple-400' : '' }}">
                 <div class = "h-auto ">
                 <i class="fas fa-satellite-dish text-xl"></i>
                 <span class="sidebar-tooltip ">Datos en Tiempo Real</span>
                 </div>
             </a>
             
-            <a href="{{ route('sensores.estadisticas') }}" class="group transition-all hover:text-purple-500 hover:scale-115 delay-150 ease-in transition-discrete hover:rounded-2xl  relative  grow flex flex-col justify-center sidebar-icon {{ request()->routeIs('sensores.estadisticas') ? 'text-purple-400' : '' }}">
+            <a href="{{ route('sensores.estadisticas') }}" class="group transition-all hover:text-purple-500 hover:scale-115 delay-100 ease-in transition-discrete hover:rounded-2xl  relative  grow flex flex-col justify-center sidebar-icon {{ request()->routeIs('sensores.estadisticas') ? 'text-purple-400' : '' }}">
                  <div class = "h-auto ">
                 <i class="fas fa-chart-bar text-xl"></i>
                 <span class="sidebar-tooltip">Estadísticas</span>
                 </div>
             </a>
             
-            <a href="#" class="group transition-all hover:text-purple-500 hover:scale-115 delay-150 ease-in  transition-discrete hover:rounded-2xl relative grow flex flex-col justify-center  sidebar-icon">
+            <a href="#" class="group transition-all hover:text-purple-500 hover:scale-115 delay-100 ease-in  transition-discrete hover:rounded-2xl relative grow flex flex-col justify-center  sidebar-icon">
                  <div class = "h-auto ">
                 <i class="fas fa-cog text-xl"></i>
                 <span class="sidebar-tooltip">Configuración</span>
                 </div>
             </a>
             
-            <a href="#" class="group relative transition-all hover:text-purple-500 hover:scale-115 delay-150 ease-in  transition-discrete hover:rounded-2xl grow flex flex-col justify-center sidebar-icon">
+            <a href="#" class="group relative transition-all hover:text-purple-500 hover:scale-115 delay-100 ease-in  transition-discrete hover:rounded-2xl grow flex flex-col justify-center sidebar-icon">
                  <div class = "h-auto ">
                 <i class="fas fa-rocket text-xl"></i>
                 <span class="sidebar-tooltip">Control de Misión</span>
@@ -110,5 +110,21 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Script para insertar codigo javaScript en htmlL -->
+    <script> 
+        function actualizarHora()
+        {
+            //ahora es un objeto de tipo date para sacar las horas, la convierte en dos digitos
+            const ahora = new Date();
+            const horas = String(ahora.getHours()).padStart(2, '0');
+            const minutos = String(ahora.getMinutes()).padStart(2, '0');
+            const segundos = String(ahora.getSeconds()).padStart(2, '0');
+            const horaActual = `${horas}:${minutos}:${segundos}`; //la hora actual completa
+            document.getElementById('currentTime').textContent = horaActual; //Busca el html con nombre currentTime y cam,bia el tecto por horaActual
+        }
+        actualizarHora();
+        setInterval(actualizarHora, 1000);
+    </script>
+
 </body>
 </html>

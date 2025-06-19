@@ -69,8 +69,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                     areaStyle: {
                         opacity: 0.8,
                         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                            { offset: 0, color: 'rgba(255, 0, 0, 0.8)' },
-                            { offset: 1, color: 'rgba(255, 0, 0, 0.1)' }
+                            { offset: 0, color: 'rgba(249, 137, 25, 0.83)' },
+                            { offset: 1, color: 'rgba(255, 128, 0, 0.14)' }
                         ])
                     },
                     emphasis: { focus: 'series' },
@@ -83,8 +83,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                     areaStyle: {
                         opacity: 0.8,
                         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                            { offset: 0, color: 'rgba(0, 0, 255, 0.8)' },
-                            { offset: 1, color: 'rgba(0, 0, 255, 0.1)' }
+                            { offset: 0, color: 'rgba(220, 52, 235, 0.8)' },
+                            { offset: 1, color: 'rgba(187, 0, 255, 0.1)' }
                         ])
                     },
                     emphasis: { focus: 'series' },

@@ -7,31 +7,33 @@ use Illuminate\Support\Facades\Http;
 
 class SensorDataController extends Controller
 {
-    private $apiUrl = 'http://localhost:5000/api/datos';
+    private $apiUrl = 'http://localhost:5000/api';
 
-    public function index()
+    public function index(Request $request)
 {
     try {
-        $response = Http::get('http://localhost:5000/api/datos');
-        
-        // Verifica si la respuesta existe y es exitosa
+        $pagina = $request->input('page', 1); // Obtener el número de página actual
+
+        // Agrega 'page' como parámetro en la petición GET
+        $response = Http::get($this->apiUrl . '/datos', [
+            'page' => $pagina
+        ]);
+
         if (!$response || !$response->successful()) {
             throw new \Exception("Error al conectar con la API");
         }
 
         $apiData = $response->json();
-        
-        // Verifica si la decodificación JSON fue exitosa
+
         if (is_null($apiData)) {
             throw new \Exception("La API devolvió un formato inválido");
         }
 
-        // Estructura de datos segura con valores por defecto
         return view('sensores.index-arduino', [
             'datos' => [
                 'datos' => $apiData['datos'] ?? [],
                 'total_paginas' => $apiData['total_paginas'] ?? 1,
-                'pagina_actual' => $apiData['pagina_actual'] ?? 1
+                'pagina_actual' => $apiData['pagina_actual'] ?? $pagina
             ]
         ]);
 

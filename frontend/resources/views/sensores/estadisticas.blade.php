@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="bg-gray-800 shadow-lg rounded-lg overflow-hidden border border-blue-500 glow-effect">
-    <div class="nasa-gradient px-4 py-5 sm:px-6 border-b border-blue-700">
+<div class="bg-gray-800 shadow-lg rounded-lg overflow-hidden border border-violet-500 glow-effect">
+    <div class="nasa-gradient px-4 py-5 sm:px-6 border-b border-violet-700">
         <div class="flex items-center justify-between">
-            <h2 class="text-xl font-semibold text-blue-300 space-font flex items-center">
-                <i class="fas fa-chart-bar text-blue-400 mr-3"></i>
+            <h2 class="text-xl font-semibold text-purple-300 space-font flex items-center">
+                <i class="fas fa-chart-bar text-violet-200 mr-3"></i>
                 Estadísticas de Sensores
             </h2>
-            <div class="text-blue-400 space-font text-sm">
+            <div class="text-purple-400 space-font text-sm">
                 <i class="fas fa-satellite-dish mr-2"></i>
                 <span>Control de Misión</span>
             </div>
@@ -33,29 +33,29 @@
         <form action="{{ route('sensores.estadisticas') }}" method="GET" class="mb-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="space-y-1">
-                    <label for="inicio" class="block text-sm font-medium text-blue-300">Fecha Inicio</label>
+                    <label for="inicio" class="block text-sm font-medium text-purple-300">Fecha Inicio</label>
                     <div class="relative">
                         <input type="datetime-local" 
-                               class="mt-1 block w-full rounded-md bg-gray-800 border-blue-500 text-blue-300 shadow-lg focus:border-blue-400 focus:ring-blue-400 sm:text-sm" 
+                               class="mt-1 block w-full rounded-md bg-gray-800 border-violet-500 text-purple-300 shadow-lg focus:border-violet-400 focus:ring-violet-400 sm:text-sm" 
                                id="inicio" 
                                name="inicio" 
                                value="{{ request('inicio') }}">
-                        <div class="absolute inset-0 bg-blue-400/10 pointer-events-none rounded-md"></div>
+                        <div class="absolute inset-0 bg-violet-400/10 pointer-events-none rounded-md"></div>
                     </div>
                 </div>
                 <div class="space-y-1">
-                    <label for="fin" class="block text-sm font-medium text-blue-300">Fecha Fin</label>
+                    <label for="fin" class="block text-sm font-medium text-purple-300">Fecha Fin</label>
                     <div class="relative">
                         <input type="datetime-local" 
-                               class="mt-1 block w-full rounded-md bg-gray-800 border-blue-500 text-blue-300 shadow-lg focus:border-blue-400 focus:ring-blue-400 sm:text-sm" 
+                               class="mt-1 block w-full rounded-md bg-gray-800 border-violet-500 text-purple-300 shadow-lg focus:violet-blue-400 focus:ring-violet-400 sm:text-sm" 
                                id="fin" 
                                name="fin" 
                                value="{{ request('fin') }}">
-                        <div class="absolute inset-0 bg-blue-400/10 pointer-events-none rounded-md"></div>
+                        <div class="absolute inset-0 bg-violet-400/10 pointer-events-none rounded-md"></div>
                     </div>
                 </div>
                 <div class="flex items-end">
-                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-blue-100 font-medium py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 border border-blue-400 shadow-lg transition-all duration-300 hover:shadow-blue-400/50">
+                    <button type="submit" class="w-full bg-violet-600 hover:bg-violet-700 text-blue-100 font-medium py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500 border border-violet-400 shadow-lg transition-all duration-300 hover:shadow-violet-400/50">
                         Filtrar
                     </button>
                 </div>
@@ -63,22 +63,22 @@
         </form>
 
         <div class="overflow-x-auto">
-            <table class="min-w-full divide-y divide-blue-800">
+            <table class="min-w-full divide-y divide-violet-800">
                 <thead>
                     <tr class="bg-gray-800">
-                        <th class="px-6 py-3 text-left text-xs font-medium text-blue-300 uppercase tracking-wider border-b border-blue-700">Sensor</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-blue-300 uppercase tracking-wider border-b border-blue-700">Promedio</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-blue-300 uppercase tracking-wider border-b border-blue-700">Mínimo</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-blue-300 uppercase tracking-wider border-b border-blue-700">Máximo</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-purple-300 uppercase tracking-wider border-b border-violet-700">Sensor</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-purple-300 uppercase tracking-wider border-b border-violet-700">Promedio</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-purple-300 uppercase tracking-wider border-b border-violet-700">Mínimo</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-purple-300 uppercase tracking-wider border-b border-violet-700">Máximo</th>
                     </tr>
                 </thead>
-                <tbody class="bg-gray-900 divide-y divide-blue-800/30">
+                <tbody class="bg-gray-900 divide-y divide-violet-800/30">
                                 @foreach($estadisticas as $sensor => $datos)
-                                    <tr class="hover:bg-blue-900/20 transition-colors duration-150">
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-300">{{ ucfirst($sensor) }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-200">{{ number_format($datos['promedio'], 2) }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-200">{{ number_format($datos['minimo'], 2) }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-200">{{ number_format($datos['maximo'], 2) }}</td>
+                                    <tr class="hover:bg-violet-900/20 transition-colors duration-150">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-purple-300">{{ ucfirst($sensor) }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-purple-200">{{ number_format($datos['promedio'], 2) }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-purple-200">{{ number_format($datos['minimo'], 2) }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-purple-200">{{ number_format($datos['maximo'], 2) }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
