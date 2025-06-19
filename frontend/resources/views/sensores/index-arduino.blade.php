@@ -8,10 +8,10 @@
                 <i class="fas fa-satellite text-blue-400 mr-3"></i>
                 Telemetría en Tiempo Real
             </h2>
-            <div class="text-blue-400 space-font text-sm">
+            <!-- <div class="text-blue-400 space-font text-sm">
                 <i class="fas fa-clock mr-2"></i>
                 <span id="currentTime">{{ now()->format('H:i:s') }}</span>
-            </div>
+            </div> -->
         </div>
     </div>
     <div class="p-4 bg-gray-900">
@@ -37,9 +37,9 @@
             <table class="min-w-full divide-y divide-blue-700">
                 <thead>
                     <tr class="bg-gray-900">
-                        <th class="px-6 py-3 text-left text-xs font-medium text-blue-400 uppercase tracking-wider space-font"><i class="fas fa-clock mr-2"></i>Fecha/Hora</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-blue-400 uppercase tracking-wider space-font"><i class="fas fa-temperature-high mr-2"></i>Temperatura</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-blue-400 uppercase tracking-wider space-font"><i class="fas fa-tint mr-2"></i>Humedad</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-purple-400 uppercase tracking-wider space-font"><i class="fas fa-clock mr-2"></i>Fecha/Hora</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-purple-400 uppercase tracking-wider space-font"><i class="fas fa-temperature-high mr-2"></i>Temperatura</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-purple-400 uppercase tracking-wider space-font"><i class="fas fa-tint mr-2"></i>Humedad</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-blue-700">
@@ -60,7 +60,7 @@
                                 @for($i = 1; $i <= $datos['total_paginas']; $i++)
                                     <li>
                                         <a href="{{ route('sensores.index', ['page' => $i]) }}"
-                                           class="px-4 py-2 text-sm {{ $i == $datos['pagina_actual'] ? 'bg-blue-600 text-blue-200' : 'bg-gray-800 text-blue-400 hover:bg-blue-900' }} rounded border border-blue-700 transition-colors duration-200">
+                                            class="px-4 py-2 text-sm {{ $i == $datos['pagina_actual'] ? 'bg-blue-600 text-blue-200' : 'bg-gray-800 text-blue-400 hover:bg-blue-900' }} rounded border border-blue-700 transition-colors duration-200">
                                             {{ $i }}
                                         </a>
                                     </li>
