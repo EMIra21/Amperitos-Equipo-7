@@ -29,7 +29,7 @@ class SensorDataController extends Controller
             throw new \Exception("La API devolvió un formato inválido");
         }
 
-        return view('sensores.index-arduino', [
+        return view('sensores.index', [
             'datos' => [
                 'datos' => $apiData['datos'] ?? [],
                 'total_paginas' => $apiData['total_paginas'] ?? 1,
@@ -38,7 +38,7 @@ class SensorDataController extends Controller
         ]);
 
     } catch (\Exception $e) {
-        return view('sensores.index-arduino', [
+        return view('sensores.index', [
             'datos' => [
                 'datos' => [],
                 'total_paginas' => 1,

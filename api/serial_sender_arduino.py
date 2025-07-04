@@ -3,7 +3,7 @@ import requests
 import json
 import time
 
-SERIAL_PORT = 'COM7'  # Cambiar al puerto que corresponda
+SERIAL_PORT = 'COM4'  # Cambiar al puerto que corresponda
 BAUD_RATE = 9600
 API_ENDPOINT = 'http://localhost:5000/api/guardar'
 
@@ -24,9 +24,12 @@ def escuchar_serial():
             with serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=2) as ser:
                 print(f"Escuchando en {SERIAL_PORT}...")
                 while True:
+                    #time.sleep(1)
                     try:
+                        #time.sleep(1)
                         datos_raw = ser.readline()
                         if not datos_raw:
+                            print("...")
                             continue
 
                         try:
@@ -51,7 +54,7 @@ def escuchar_serial():
                             buffer = ""  # Limpiar buffer
 
                         # Limpiar si el buffer se vuelve demasiado grande sin cerrar
-                        elif len(buffer) > 500:
+                        elif len(buffer) > 100:
                             print("Buffer desbordado. Reiniciando.")
                             buffer = ""
 
@@ -67,4 +70,4 @@ def escuchar_serial():
 if __name__ == '__main__':
     while True:
         escuchar_serial()
-        time.sleep(5)
+        time.sleep(1)
