@@ -1,10 +1,14 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timedelta
+import pytz
 from dotenv import load_dotenv
 from sqlalchemy import func, and_
 from flask_cors import CORS
 import os
+
+#Cargando zona horaria de mexico
+mexico_tz = pytz.timezone("America/Mexico_City")
 
 load_dotenv()
 
@@ -31,7 +35,9 @@ class SensorData(db.Model):
     gx = db.Column(db.Float)
     gy = db.Column(db.Float)
     gz = db.Column(db.Float)
-    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    #timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    # Usar hora local de México al guardar el registro
+    timestamp = db.Column(db.DateTime, default=lambda: datetime.now(mexico_tz))
 
     def to_dict(self):
         return {

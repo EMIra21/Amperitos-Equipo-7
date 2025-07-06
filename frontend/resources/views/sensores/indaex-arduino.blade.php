@@ -73,4 +73,11 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    console.log("Saludos a la grasa");
+</script>
+
+
 @endsection

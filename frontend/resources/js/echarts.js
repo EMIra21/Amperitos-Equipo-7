@@ -1,9 +1,8 @@
 import * as echarts from 'echarts';
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const myChart = echarts.init(document.getElementById('sensorChart'));
 
-    // Obtener datos de la tabla
     const rows = Array.from(document.querySelectorAll('table tbody tr'));
     const timestamps = [];
     const series = {
@@ -32,181 +31,102 @@ document.addEventListener('DOMContentLoaded', function() {
         series.etoh.push(parseFloat(cells[9].textContent));
     });
 
-    const option = {
-        title: {
-            text: 'Datos de Sensores',
-            left: 'center'
-        },
-        tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-                type: 'cross',
-                label: {
-                    backgroundColor: '#6a7985'
+    const colores = {
+        temperatura: ['rgba(255, 0, 0, 0.8)', 'rgba(255, 0, 0, 0.1)'],
+        humedad: ['rgba(0, 0, 255, 0.8)', 'rgba(0, 0, 255, 0.1)'],
+        presion: ['rgba(0, 255, 0, 0.8)', 'rgba(0, 255, 0, 0.1)'],
+        gas: ['rgba(255, 165, 0, 0.8)', 'rgba(255, 165, 0, 0.1)'],
+        co: ['rgba(128, 0, 128, 0.8)', 'rgba(128, 0, 128, 0.1)'],
+        h2: ['rgba(165, 42, 42, 0.8)', 'rgba(165, 42, 42, 0.1)'],
+        ch4: ['rgba(0, 128, 128, 0.8)', 'rgba(0, 128, 128, 0.1)'],
+        nh3: ['rgba(255, 192, 203, 0.8)', 'rgba(255, 192, 203, 0.1)'],
+        etoh: ['rgba(0, 255, 255, 0.8)', 'rgba(0, 255, 255, 0.1)']
+    };
+
+    function crearSeries(keys) {
+        return keys.map(k => ({
+            name: k.toUpperCase(),
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {
+                opacity: 0.8,
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                    { offset: 0, color: colores[k][0] },
+                    { offset: 1, color: colores[k][1] }
+                ])
+            },
+            emphasis: { focus: 'series' },
+            data: series[k]
+        }));
+    }
+
+    function actualizarGrafico(keys, titulo) {
+        const option = {
+            title: {
+                text: titulo,
+                left: 'center',
+                textStyle: {
+                    color: '#45556c', // Cambia este valor al color que desees (hex, rgb, o nombre)
+                    fontSize: 20,     // Opcional: tamaño del texto
+                    fontWeight: 'bold' // Opcional: estilo de fuente
                 }
-            }
-        },
-        legend: {
-            data: ['Temperatura', 'Humedad', 'Presión', 'Gas', 'CO', 'H2', 'CH4', 'NH3', 'EtOH'],
-            top: '30px'
-        },
-        toolbox: {
-            feature: {
-                saveAsImage: {}
-            }
-        },
-        grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
-        },
-        xAxis: [
-            {
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    label: { backgroundColor: '#6a7985' }
+                }
+            },
+            legend: {
+                data: keys.map(k => k.toUpperCase()),
+                top: '30px'
+            },
+            toolbox: {
+                feature: { saveAsImage: {} }
+            },
+            grid: {
+                left: '3%',
+                right: '2%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [{
                 type: 'category',
                 boundaryGap: false,
                 data: timestamps
-            }
-        ],
-        yAxis: [
-            {
+            }],
+            yAxis: [{
                 type: 'value'
-            }
-        ],
-        series: [
-            {
-                name: 'Temperatura',
-                type: 'line',
-                stack: 'Total',
-                areaStyle: {
-                    opacity: 0.8,
-                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                        { offset: 0, color: 'rgba(255, 0, 0, 0.8)' },
-                        { offset: 1, color: 'rgba(255, 0, 0, 0.1)' }
-                    ])
-                },
-                emphasis: { focus: 'series' },
-                data: series.temperatura
-            },
-            {
-                name: 'Humedad',
-                type: 'line',
-                stack: 'Total',
-                areaStyle: {
-                    opacity: 0.8,
-                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                        { offset: 0, color: 'rgba(0, 0, 255, 0.8)' },
-                        { offset: 1, color: 'rgba(0, 0, 255, 0.1)' }
-                    ])
-                },
-                emphasis: { focus: 'series' },
-                data: series.humedad
-            },
-            {
-                name: 'Presión',
-                type: 'line',
-                stack: 'Total',
-                areaStyle: {
-                    opacity: 0.8,
-                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                        { offset: 0, color: 'rgba(0, 255, 0, 0.8)' },
-                        { offset: 1, color: 'rgba(0, 255, 0, 0.1)' }
-                    ])
-                },
-                emphasis: { focus: 'series' },
-                data: series.presion
-            },
-            {
-                name: 'Gas',
-                type: 'line',
-                stack: 'Total',
-                areaStyle: {
-                    opacity: 0.8,
-                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                        { offset: 0, color: 'rgba(255, 165, 0, 0.8)' },
-                        { offset: 1, color: 'rgba(255, 165, 0, 0.1)' }
-                    ])
-                },
-                emphasis: { focus: 'series' },
-                data: series.gas
-            },
-            {
-                name: 'CO',
-                type: 'line',
-                stack: 'Total',
-                areaStyle: {
-                    opacity: 0.8,
-                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                        { offset: 0, color: 'rgba(128, 0, 128, 0.8)' },
-                        { offset: 1, color: 'rgba(128, 0, 128, 0.1)' }
-                    ])
-                },
-                emphasis: { focus: 'series' },
-                data: series.co
-            },
-            {
-                name: 'H2',
-                type: 'line',
-                stack: 'Total',
-                areaStyle: {
-                    opacity: 0.8,
-                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                        { offset: 0, color: 'rgba(165, 42, 42, 0.8)' },
-                        { offset: 1, color: 'rgba(165, 42, 42, 0.1)' }
-                    ])
-                },
-                emphasis: { focus: 'series' },
-                data: series.h2
-            },
-            {
-                name: 'CH4',
-                type: 'line',
-                stack: 'Total',
-                areaStyle: {
-                    opacity: 0.8,
-                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                        { offset: 0, color: 'rgba(0, 128, 128, 0.8)' },
-                        { offset: 1, color: 'rgba(0, 128, 128, 0.1)' }
-                    ])
-                },
-                emphasis: { focus: 'series' },
-                data: series.ch4
-            },
-            {
-                name: 'NH3',
-                type: 'line',
-                stack: 'Total',
-                areaStyle: {
-                    opacity: 0.8,
-                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                        { offset: 0, color: 'rgba(255, 192, 203, 0.8)' },
-                        { offset: 1, color: 'rgba(255, 192, 203, 0.1)' }
-                    ])
-                },
-                emphasis: { focus: 'series' },
-                data: series.nh3
-            },
-            {
-                name: 'EtOH',
-                type: 'line',
-                stack: 'Total',
-                areaStyle: {
-                    opacity: 0.8,
-                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                        { offset: 0, color: 'rgba(0, 255, 255, 0.8)' },
-                        { offset: 1, color: 'rgba(0, 255, 255, 0.1)' }
-                    ])
-                },
-                emphasis: { focus: 'series' },
-                data: series.etoh
-            }
-        ]
+            }],
+            series: crearSeries(keys)
+        };
+
+        myChart.setOption(option);
+    }
+
+    const categorias = {
+        ambientales: ['temperatura', 'humedad'],
+        fisicas: ['presion', 'gas'],
+        quimica: ['co', 'h2', 'ch4', 'nh3', 'etoh']
     };
 
-    myChart.setOption(option);
+    document.getElementById('btnAmbientales').addEventListener('click', () => {
+        actualizarGrafico(categorias.ambientales, 'Condiciones Ambientales');
+    });
 
-    // Responsive chart
-    window.addEventListener('resize', function() {
+    document.getElementById('btnFisicas').addEventListener('click', () => {
+        actualizarGrafico(categorias.fisicas, 'Presión y Gases');
+    });
+
+    document.getElementById('btnQuimica').addEventListener('click', () => {
+        actualizarGrafico(categorias.quimica, 'Composición Química del Aire');
+    });
+
+    // Mostrar por defecto la categoría "Condiciones Ambientales"
+    actualizarGrafico(categorias.ambientales, 'Condiciones Ambientales');
+
+    window.addEventListener('resize', () => {
         myChart.resize();
     });
 });

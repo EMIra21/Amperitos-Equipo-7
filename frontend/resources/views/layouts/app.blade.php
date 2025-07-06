@@ -70,7 +70,7 @@
                 </div>
             </a>
             
-            <a href="{{ route('sensores.rango') }}" class="group relative transition-all hover:text-purple-500 hover:scale-115 delay-100 ease-in  transition-discrete hover:rounded-2xl grow flex flex-col justify-center sidebar-icon">
+            <a href="{{ route('sensores.control') }}" class="group relative transition-all hover:text-purple-500 hover:scale-115 delay-100 ease-in  transition-discrete hover:rounded-2xl grow flex flex-col justify-center sidebar-icon">
                  <div class = "h-auto ">
                 <i class="fas fa-rocket text-xl"></i>
                 <span class="sidebar-tooltip">Control de Misión</span>
@@ -130,6 +130,40 @@
         actualizarHora();
         setInterval(actualizarHora, 1000);
     </script>
+    <script>
+        /* 
+        function cargarVista(vista) {
+            
+            fetch(`/sensores/cargar-vista/${vista}`)
+                .then(res => res.text())
+                .then(html => {
+                    document.getElementById('contenedorContenido').innerHTML = html;
+                });
+                
+               fetch(`/sensores/cargar-vista/${vista}`)
+                .then(res => res.text())
+                .then(html => {
+                    document.getElementById('contenedorContenido').innerHTML = html;
+                });
+        } */
+    </script>
+    <script>
+        /* document.addEventListener('submit', function(event) {
+            if (event.target.matches('#formFiltros')) { // asumiendo que el form tiene id="formFiltros"
+                event.preventDefault();
+                const form = event.target;
+                const url = form.action + '?' + new URLSearchParams(new FormData(form)).toString();
 
+                fetch(url)
+                    .then(res => res.text())
+                    .then(html => {
+                        document.getElementById('contenedorContenido').innerHTML = html;
+                    })
+                    .catch(err => console.error('Error al enviar formulario:', err));
+            }
+        }); */
+    </script>
+    
+ @stack('scripts')
 </body>
 </html>
